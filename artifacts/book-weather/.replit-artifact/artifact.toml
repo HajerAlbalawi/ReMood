@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "ReMood"
+version = "1.0.0"
+id = "artifacts/book-weather"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21315
+
+[services.development]
+run = "pnpm --filter @workspace/book-weather run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/book-weather", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/book-weather/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21315"
+BASE_PATH = "/"

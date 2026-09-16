@@ -1,0 +1,946 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification for مرشد الكتب الذكي - AI weather-based book recommender
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: weather
+    description: Live weather data
+  - name: recommendations
+    description: AI-powered book recommendations
+  - name: ai
+    description: Natural-language book discovery and voice transcription
+  - name: goodreads
+    description: Goodreads shelf integration
+  - name: Auth
+    description: Browser and mobile authentication endpoints.
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /weather:
+    get:
+      operationId: getWeather
+      tags: [weather]
+      summary: Get live weather for a city
+      description: Fetches current weather conditions and hourly forecast for a Saudi city
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+          description: City name (Arabic)
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Latitude
+        - name: lng
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Longitude
+      responses:
+        "200":
+          description: Weather data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeatherData"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /recommendations:
+    post:
+      operationId: createRecommendation
+      tags: [recommendations]
+      summary: Get AI book recommendations
+      description: Uses AI to recommend books based on weather, mood, and category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecommendationInput"
+      responses:
+        "200":
+          description: AI book recommendations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recommendation"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    get:
+      operationId: listRecommendations
+      tags: [recommendations]
+      summary: List past recommendations
+      description: Returns history of AI-generated book recommendations
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+          description: Number of recommendations to return
+      responses:
+        "200":
+          description: List of past recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Recommendation"
+
+  /recommendations/stats:
+    get:
+      operationId: getRecommendationStats
+      tags: [recommendations]
+      summary: Get recommendation statistics
+      description: Returns aggregated statistics about past recommendations
+      responses:
+        "200":
+          description: Recommendation statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecommendationStats"
+
+  /ai/book-preview:
+    post:
+      operationId: createAiBookPreview
+      tags: [ai]
+      summary: Preview books from a natural-language request
+      description: Interprets a reader's free-form request with the current weather and mood context, then returns books for review before applying them.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AiBookPreviewInput"
+      responses:
+        "200":
+          description: Preview recommendations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AiBookPreview"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: AI provider unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /ai/transcribe:
+    post:
+      operationId: transcribeVoice
+      tags: [ai]
+      summary: Transcribe a voice reading request
+      description: Converts a short browser recording into editable text. Audio is processed in memory and is not stored.
+      requestBody:
+        required: true
+        content:
+          audio/webm:
+            schema:
+              type: string
+              format: binary
+          audio/wav:
+            schema:
+              type: string
+              format: binary
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        "200":
+          description: Transcribed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transcription"
+        "400":
+          description: Missing or unsupported audio
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: AI provider unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/user:
+    get:
+      tags: [Auth]
+      operationId: getCurrentAuthUser
+      summary: Get the currently authenticated user
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        '200':
+          description: Auth status resolved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserEnvelope'
+  /login:
+    get:
+      tags: [Auth]
+      operationId: beginBrowserLogin
+      summary: Start the browser OIDC login flow
+      parameters:
+        - name: returnTo
+          in: query
+          required: false
+          description: Relative path to redirect to after login (must start with `/`). Defaults to `/`.
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the OIDC authorization endpoint.
+  /callback:
+    get:
+      tags: [Auth]
+      operationId: handleBrowserLoginCallback
+      summary: Complete the browser OIDC login flow
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: iss
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the `returnTo` path on success (defaults to `/`) or `/api/login` on failure.
+  /logout:
+    get:
+      tags: [Auth]
+      operationId: logoutBrowserSession
+      summary: Clear the session and begin OIDC logout
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+        - name: returnTo
+          in: query
+          required: false
+          schema:
+            type: string
+            default: /
+      responses:
+        '302':
+          description: Redirect to the OIDC provider logout URL with a post-logout redirect back to the validated `returnTo` path.
+  /mobile-auth/token-exchange:
+    post:
+      tags: [Auth]
+      operationId: exchangeMobileAuthorizationCode
+      summary: Exchange a mobile OIDC code for a session token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobileTokenExchangeRequest'
+      responses:
+        '200':
+          description: Session created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileTokenExchangeSuccess'
+        '400':
+          description: Missing or invalid required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Token did not contain usable claims.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Token exchange failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /mobile-auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logoutMobileSession
+      summary: Delete a mobile session token
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+      responses:
+        '200':
+          description: Logout processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutSuccess'
+
+  /goodreads/shelf:
+    get:
+      operationId: getGoodreadsShelf
+      tags: [goodreads]
+      summary: Fetch a Goodreads user shelf
+      description: Fetches books from a public Goodreads shelf via RSS (read or to-read)
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{1,20}$'
+            minLength: 1
+            maxLength: 20
+          description: Goodreads numeric user ID
+        - name: shelf
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [read, to-read, currently-reading]
+            default: read
+          description: Which shelf to fetch
+      responses:
+        "200":
+          description: Books on the shelf
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoodreadsShelf"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "502":
+          description: Failed to fetch from Goodreads
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  parameters:
+    AuthorizationSessionHeader:
+      name: Authorization
+      in: header
+      required: false
+      description: Opaque session token — `Bearer <sid>`.
+      schema:
+        type: string
+    SessionCookie:
+      name: sid
+      in: cookie
+      required: false
+      description: Browser session cookie.
+      schema:
+        type: string
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    HourlyForecast:
+      type: object
+      properties:
+        time:
+          type: string
+        temp:
+          type: number
+        weatherCode:
+          type: integer
+      required:
+        - time
+        - temp
+        - weatherCode
+
+    WeatherData:
+      type: object
+      properties:
+        city:
+          type: string
+        temperature:
+          type: number
+        condition:
+          type: string
+        conditionGroup:
+          type: string
+        backgroundImage:
+          type: string
+        hourlyForecast:
+          type: array
+          items:
+            $ref: "#/components/schemas/HourlyForecast"
+      required:
+        - city
+        - temperature
+        - condition
+        - conditionGroup
+        - backgroundImage
+        - hourlyForecast
+
+    BookSuggestion:
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        category:
+          type: string
+        subcategory:
+          type: string
+        rating:
+          type: string
+        reason:
+          type: string
+        quote:
+          type: string
+        contentWarnings:
+          type: array
+          description: Structured content-warning codes curated for the specific edition or work; omitted when no warning is verified.
+          items:
+            type: string
+            enum:
+              - graphic_violence
+              - physical_assault
+              - domestic_abuse
+              - child_abuse
+              - animal_cruelty_death
+              - torture
+              - kidnapping
+              - suicide_self_harm
+              - eating_disorders
+              - mental_illness
+              - grief_loss
+              - religious_trauma
+              - explicit_sexual_content
+              - sexual_assault
+              - grooming
+              - nudity
+              - racism_slurs
+              - terminal_illness
+              - miscarriage_abortion
+              - medical_trauma
+              - drug_use_addiction
+              - alcohol_abuse
+              - smoking
+              - foul_language
+              - religious_themes
+              - occult_magic
+              - not_for_children
+              - child_suitability_unverified
+        suitableAgeGroups:
+          type: array
+          description: Reader age groups curated as suitable for this work or edition.
+          items:
+            type: string
+            enum:
+              - children
+              - teen
+              - adult
+        sourceReferences:
+          type: array
+          description: Reader-catalog sources used to verify that the book and edition exist; these references do not guarantee content suitability.
+          items:
+            type: string
+            enum:
+              - goodreads
+              - storygraph
+      required:
+        - title
+        - author
+        - category
+        - subcategory
+        - rating
+        - reason
+        - quote
+
+    RecommendationInput:
+      type: object
+      properties:
+        city:
+          type: string
+        mood:
+          type: string
+        category:
+          type: string
+        weatherCondition:
+          type: string
+        temperature:
+          type: number
+        excludeBooks:
+          type: array
+          items:
+            type: string
+          description: List of book titles already read (from Goodreads) to exclude from suggestions
+        likedBooks:
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 240
+          description: Previously liked book titles used to personalize future rankings
+        dislikedBooks:
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 240
+          description: Previously disliked book titles excluded from future recommendations
+        bookLength:
+          type: string
+        timeOfDay:
+          type: string
+        cityName:
+          type: string
+        language:
+          type: string
+        cityBookLang:
+          type: string
+          enum: [ar, en, fr]
+        ageGroup:
+          type: string
+          enum: [children, teen, adult]
+          default: adult
+          description: Reader age group used to tailor recommendations. Adults are 18 and over.
+        occasion:
+          type: string
+        season:
+          type: string
+        readingStyle:
+          type: string
+          enum: [trending, forgotten, classic, unknown]
+          description: Optional discovery preference for the recommendation ranking
+        preferredGenres:
+          type: array
+          maxItems: 12
+          items:
+            type: string
+            maxLength: 40
+          description: Compact reader taste profile derived from public Goodreads shelves, ordered by strongest preference.
+      required:
+        - city
+        - mood
+        - category
+        - weatherCondition
+        - temperature
+
+    AiBookPreviewInput:
+      type: object
+      properties:
+        prompt:
+          type: string
+          minLength: 3
+          maxLength: 1200
+        mode:
+          type: string
+          enum: [custom, hidden_gem, trending, classic, excerpt]
+          default: custom
+        searchRound:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 1
+        city:
+          type: string
+        mood:
+          type: string
+        category:
+          type: string
+        weatherCondition:
+          type: string
+        temperature:
+          type: number
+        timeOfDay:
+          type: string
+        cityBookLang:
+          type: string
+          enum: [ar, en, fr]
+        language:
+          type: string
+          enum: [ar, en, fr]
+        excludeBooks:
+          type: array
+          items:
+            type: string
+        bookLength:
+          type: string
+        ageGroup:
+          type: string
+        season:
+          type: string
+      required:
+        - prompt
+
+    AiBookPreviewBook:
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        category:
+          type: string
+        subcategory:
+          type: string
+        rating:
+          type: string
+        reason:
+          type: string
+        quote:
+          type: string
+        atmosphere:
+          type: string
+        length:
+          type: string
+        publishedYear:
+          type: integer
+          minimum: 0
+        publishedMonth:
+          type: integer
+          minimum: 1
+          maximum: 12
+        tags:
+          type: array
+          items:
+            type: string
+        fitScore:
+          type: integer
+          minimum: 0
+          maximum: 100
+      required:
+        - title
+        - author
+        - category
+        - subcategory
+        - rating
+        - reason
+        - quote
+        - tags
+        - fitScore
+
+    AiBookPreview:
+      type: object
+      properties:
+        interpretedRequest:
+          type: string
+        summary:
+          type: string
+        books:
+          type: array
+          minItems: 1
+          maxItems: 5
+          items:
+            $ref: "#/components/schemas/AiBookPreviewBook"
+      required:
+        - interpretedRequest
+        - summary
+        - books
+
+    Transcription:
+      type: object
+      properties:
+        text:
+          type: string
+      required:
+        - text
+
+    Recommendation:
+      type: object
+      properties:
+        id:
+          type: integer
+        city:
+          type: string
+        mood:
+          type: string
+        category:
+          type: string
+        weatherCondition:
+          type: string
+        temperature:
+          type: number
+        books:
+          type: array
+          items:
+            $ref: "#/components/schemas/BookSuggestion"
+        moodQuote:
+          type: string
+        aiAnalysis:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - city
+        - mood
+        - category
+        - weatherCondition
+        - temperature
+        - books
+        - moodQuote
+        - aiAnalysis
+        - createdAt
+
+    MoodStat:
+      type: object
+      properties:
+        mood:
+          type: string
+        count:
+          type: integer
+      required:
+        - mood
+        - count
+
+    CategoryStat:
+      type: object
+      properties:
+        category:
+          type: string
+        count:
+          type: integer
+      required:
+        - category
+        - count
+
+    WeatherStat:
+      type: object
+      properties:
+        condition:
+          type: string
+        count:
+          type: integer
+      required:
+        - condition
+        - count
+
+    RecommendationStats:
+      type: object
+      properties:
+        totalRecommendations:
+          type: integer
+        topMoods:
+          type: array
+          items:
+            $ref: "#/components/schemas/MoodStat"
+        topCategories:
+          type: array
+          items:
+            $ref: "#/components/schemas/CategoryStat"
+        weatherBreakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/WeatherStat"
+      required:
+        - totalRecommendations
+        - topMoods
+        - topCategories
+        - weatherBreakdown
+
+    GoodreadsBook:
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        goodreadsId:
+          type: string
+        coverUrl:
+          type: string
+        rating:
+          type: string
+      required:
+        - title
+        - author
+        - goodreadsId
+
+    GoodreadsGenrePreference:
+      type: object
+      properties:
+        genre:
+          type: string
+        score:
+          type: number
+      required:
+        - genre
+        - score
+
+    GoodreadsShelf:
+      type: object
+      properties:
+        userId:
+          type: string
+        shelf:
+          type: string
+        books:
+          type: array
+          items:
+            $ref: "#/components/schemas/GoodreadsBook"
+        genreProfile:
+          type: array
+          description: Genre signals inferred from public shelf titles and descriptions, ordered by strength.
+          items:
+            $ref: "#/components/schemas/GoodreadsGenrePreference"
+        total:
+          type: integer
+          description: Reported shelf total when available, otherwise the best safe estimate.
+        loaded:
+          type: integer
+          description: Number of unique books successfully loaded.
+        reportedTotal:
+          type: [integer, "null"]
+          description: Total reported by Goodreads, when present in its RSS response.
+        estimatedTotal:
+          type: integer
+          description: Best available total estimate, never less than loaded.
+        complete:
+          type: boolean
+          description: Whether every available RSS page was fetched.
+        warning:
+          type: [string, "null"]
+          description: User-facing explanation when the import is partial.
+      required:
+        - userId
+        - shelf
+        - books
+        - genreProfile
+        - total
+        - loaded
+        - reportedTotal
+        - estimatedTotal
+        - complete
+        - warning
+
+    AuthUser:
+      type: object
+      required: [id, email, firstName, lastName, profileImageUrl]
+      properties:
+        id:
+          type: string
+        email:
+          type: [string, 'null']
+        firstName:
+          type: [string, 'null']
+        lastName:
+          type: [string, 'null']
+        profileImageUrl:
+          type: [string, 'null']
+    AuthUserEnvelope:
+      type: object
+      required: [user]
+      properties:
+        user:
+          oneOf:
+            - $ref: '#/components/schemas/AuthUser'
+            - type: 'null'
+    MobileTokenExchangeRequest:
+      type: object
+      required: [code, code_verifier, redirect_uri, state]
+      properties:
+        code:
+          type: string
+          minLength: 1
+        code_verifier:
+          type: string
+          minLength: 1
+        redirect_uri:
+          type: string
+          minLength: 1
+        state:
+          type: string
+          minLength: 1
+        nonce:
+          type: string
+          minLength: 1
+    MobileTokenExchangeSuccess:
+      type: object
+      required: [token]
+      properties:
+        token:
+          type: string
+    LogoutSuccess:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+          const: true
+    ErrorEnvelope:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string

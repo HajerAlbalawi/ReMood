@@ -1,0 +1,312 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "bGlsRuO7rvGH8Ws5ssNtw"
+uri = "file://screenshots/remood-result-spring-paris.jpg"
+type = "image"
+title = "remood-result-spring-paris.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "fda324e1-1d9e-4d96-9fd3-a63147737351"
+content_hash = "sha256:de65862c73c8465577833309aa7b081514b3d23286ef153f66dbcaa2968d2fbe"
+size = 244790
+mtime_ms = 1787766375522
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/fda324e1-1d9e-4d96-9fd3-a63147737351/a668d774-bfdf-437c-87b6-5be0c37fa4fe"
+storage_version_token = "1789077646813563"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "lcyuXFM_dZ-7mElzfjRkv"
+uri = "file://screenshots/remood-result-summer-riyadh.jpg"
+type = "image"
+title = "remood-result-summer-riyadh.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "23e49237-5401-43f5-9520-9b6561b56e84"
+content_hash = "sha256:5b350ba8bb5879ed6c2c02d594ee9e36b4f87f3b8d45b26148a68f100686a861"
+size = 212933
+mtime_ms = 1787766163378
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/23e49237-5401-43f5-9520-9b6561b56e84/09a85e73-5782-41be-8031-b28637782d15"
+storage_version_token = "1789077649554876"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "eghRefJDUU9R33JaETuel"
+uri = "file://screenshots/remood-result-autumn-london.jpg"
+type = "image"
+title = "remood-result-autumn-london.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "46bef167-ed0d-49cf-bfc2-257897d73e3f"
+content_hash = "sha256:92a750184054e4b049f041fbbddbf27d838b4857a91e18e41e68e8f37902ea32"
+size = 239265
+mtime_ms = 1787766379798
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/46bef167-ed0d-49cf-bfc2-257897d73e3f/3e1bb9ee-0928-414b-acab-928dee3a91a1"
+storage_version_token = "1789077645454161"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "x22t_eddIanWtHyEVc4_x"
+uri = "file://screenshots/remood-result-winter-moscow.jpg"
+type = "image"
+title = "remood-result-winter-moscow.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "4b95c381-a9d8-481e-806f-72db8fba7f9a"
+content_hash = "sha256:26388a80df0127ebcca1bf47f822294e67ade654224f2f9babc788bd66781b32"
+size = 246738
+mtime_ms = 1787766384626
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/4b95c381-a9d8-481e-806f-72db8fba7f9a/52c76adc-170c-46fe-8b43-5b603f9ca001"
+storage_version_token = "1789077650871578"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "f0O_FFFJVVIdR5clImwHk"
+uri = "file://screenshots/remood-result-storm-doha.jpg"
+type = "image"
+title = "remood-result-storm-doha.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "c9f4b26e-415c-4165-819c-ef6abe3e3e9c"
+content_hash = "sha256:592c075c85e3edca8f5f6dd7c575605db222c253d4d1363a03cf919214495cf4"
+size = 230434
+mtime_ms = 1787767767685
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/c9f4b26e-415c-4165-819c-ef6abe3e3e9c/49c4d852-4bd0-4f0c-9490-8bf6fd1e85e2"
+storage_version_token = "1789077648229566"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "KITJDH24HfZ2c7j1X-rwA"
+uri = "file://exports/ReMood-full-source.zip"
+type = "unspecified"
+title = "ReMood — Complete Source Code"
+description = "Complete ReMood source archive including the web app, API server, shared libraries, configuration files, assets, screenshots, and dependency lockfile. Heavy dependencies, build caches, Git metadata, and secret files are excluded."
+logical_id = "076a4822-2afc-4b4e-8bad-533894bf6a64"
+
+[[outputs]]
+id = "z2tb8SeDthFO-1FeCE0sp"
+uri = "file://exports/ReMood-python-streamlit.zip"
+type = "unspecified"
+title = "ReMood — Complete Python Streamlit Code"
+description = "Standalone Python + Streamlit version of ReMood. Includes app.py, recommendation logic, multilingual book data, live Open-Meteo weather, requirements.txt, run.sh, and README.md. Tested with the default page and the storm-doha showcase."
+logical_id = "99b8e8ac-0604-43b5-9cb7-adce23e91c87"
+
+[[outputs]]
+id = "kf7uaUqqpJBZj9YxML7Mb"
+uri = "file://README.md"
+type = "text"
+title = "README.md — ReMood"
+description = "README ثنائي اللغة مع رابط التطبيق وروابط صور GitHub المباشرة."
+logical_id = "f1da4972-7aba-412e-9241-cb0420cb0dca"
+content_hash = "sha256:386ff076fdbf1433d7b73ffe29ac86583bd5ded69265db8cea64d6f19652cd94"
+size = 15578
+mtime_ms = 1789077620687
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/f1da4972-7aba-412e-9241-cb0420cb0dca/3733ca6a-e713-400e-961d-4bd701c5b161"
+storage_version_token = "1789077657777036"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "wMNUZTt91vCOQvd47LrlR"
+uri = "file://screenshots/book-feedback-options.jpg"
+type = "image"
+title = "book-feedback-options.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "33459f1a-695b-4c1c-abb8-0765ec92540b"
+content_hash = "sha256:ee2892b576be0357c8f3e846bc5520215c905658b6448641a2a649c275c0c684"
+size = 222931
+mtime_ms = 1788975560689
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/33459f1a-695b-4c1c-abb8-0765ec92540b/106dee42-be30-4e64-b3d8-d8480975be84"
+storage_version_token = "1789077630811039"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "tAo885gyycZkXgQ5O8jXQ"
+uri = "file://screenshots/remood-arabic-cairo.jpg"
+type = "image"
+title = "remood-arabic-cairo.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "6472e3c9-74b8-457d-8094-b9a8a50f8fbe"
+content_hash = "sha256:d59445f6246f4eab6649b480c86f135300207b37eddb8a77b2051ce12fff5380"
+size = 118163
+mtime_ms = 1787765983636
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/6472e3c9-74b8-457d-8094-b9a8a50f8fbe/191a2467-2b36-4c49-a1ed-8f906133b30c"
+storage_version_token = "1789077632196286"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "LjVg04IlJ_LpUEg4hCzJU"
+uri = "file://screenshots/remood-autumn-london.jpg"
+type = "image"
+title = "remood-autumn-london.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "5cb4383d-c930-4852-8b42-261bbf1770b7"
+content_hash = "sha256:bf8459bedba098aec1bf14411d380330ef0a93805e229063a3dbe9905126c594"
+size = 120664
+mtime_ms = 1787764975380
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/5cb4383d-c930-4852-8b42-261bbf1770b7/bcae8e7d-f2c6-4f04-8ee5-8c6562a42d36"
+storage_version_token = "1789077633510753"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "5GElKL0qVK1cy2nYoXvVf"
+uri = "file://screenshots/remood-cloudy-berlin.jpg"
+type = "image"
+title = "remood-cloudy-berlin.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "6239bc52-ae0a-46cf-9a2f-04e31950a7ea"
+content_hash = "sha256:fe0123ae46c9503c16e256622e39fb2287723995fbc65e920eccc3031cb66e23"
+size = 121899
+mtime_ms = 1787764986820
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/6239bc52-ae0a-46cf-9a2f-04e31950a7ea/eac6470c-9cf8-4412-8863-74492f15b011"
+storage_version_token = "1789077634776427"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "pIj3pABtDur0W6-soF3cQ"
+uri = "file://screenshots/remood-english-new-york.jpg"
+type = "image"
+title = "remood-english-new-york.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "c30f8f6b-5f88-4978-abd5-3c864281ea3c"
+content_hash = "sha256:2e6c9847b55da9506a21584ad6c2e10530dc8633fadb23821fcbc790a237db6e"
+size = 117765
+mtime_ms = 1787765980332
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/c30f8f6b-5f88-4978-abd5-3c864281ea3c/84a8f238-dcd7-41fc-bb1a-78af95c10d56"
+storage_version_token = "1789077636080589"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "O7dsM5htjQopmzColKhHl"
+uri = "file://screenshots/remood-french-casablanca.jpg"
+type = "image"
+title = "remood-french-casablanca.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "205e5849-b391-40f7-9e4e-4c62037c5b7d"
+content_hash = "sha256:65695ce66b529696b6c68f9f9253592f00f79560807a3d6e5a6b052fcdde9f6b"
+size = 123598
+mtime_ms = 1787766012104
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/205e5849-b391-40f7-9e4e-4c62037c5b7d/01b53b0c-b730-4aa6-bf73-eeb16a57365b"
+storage_version_token = "1789077637405897"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "1lF-S4f4UUg93MvJyquJ8"
+uri = "file://screenshots/remood-morning-nairobi.jpg"
+type = "image"
+title = "remood-morning-nairobi.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "0f355458-bee8-4fad-9bf4-1920853c40d6"
+content_hash = "sha256:5593043ae4c2ce7de61fa564a428e2d1592d45b321099e96cf527416132453bb"
+size = 124579
+mtime_ms = 1787765973780
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/0f355458-bee8-4fad-9bf4-1920853c40d6/586af6ea-ff79-46a7-8a82-e79ff4d7f6a5"
+storage_version_token = "1789077638700557"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "0YhlvVYzeekvx7cAv7X2-"
+uri = "file://screenshots/remood-night-tokyo.jpg"
+type = "image"
+title = "remood-night-tokyo.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "97e9c4a1-fb57-4a19-8d5c-62db321d34e2"
+content_hash = "sha256:0b09526a7feb070249ebec0c623c9d4980bb35fc180e0dd1a837e10ae8ddad14"
+size = 121126
+mtime_ms = 1787765970201
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/97e9c4a1-fb57-4a19-8d5c-62db321d34e2/5ce9321f-f76e-474f-93a7-f47d00959eee"
+storage_version_token = "1789077640004828"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "kEMe1Pbt8zMKPONL08g15"
+uri = "file://screenshots/remood-rain-jeddah.jpg"
+type = "image"
+title = "remood-rain-jeddah.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "ccb8dd21-45e3-438c-acbc-0c1437d3b434"
+content_hash = "sha256:a01a160c6f098ac236b0b0dc6470b52b5c59ec13d0bb0e627e56be86ade61ca2"
+size = 118253
+mtime_ms = 1787764983024
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/ccb8dd21-45e3-438c-acbc-0c1437d3b434/b30f34f5-f57c-4277-b389-7d3ca6659bd9"
+storage_version_token = "1789077641323220"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "xSGZySjK2AW_iNWRBPkdg"
+uri = "file://screenshots/remood-reading-styles-desktop.jpg"
+type = "image"
+title = "remood-reading-styles-desktop.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "f5d72734-c153-4bf0-8277-207e4a9f985d"
+content_hash = "sha256:8a045dbee2b1aeb73e2612df81eb19c31f2cb5c8c5f6082e8c8c2a00211c928a"
+size = 137891
+mtime_ms = 1788974284770
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/f5d72734-c153-4bf0-8277-207e4a9f985d/1ae69b4c-c0d1-4223-84c9-e2b64dac619f"
+storage_version_token = "1789077642675558"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "KzvIAs-iOTnXgUmzwyitK"
+uri = "file://screenshots/remood-reading-styles.jpg"
+type = "image"
+title = "remood-reading-styles.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "79a081f6-bbe6-401e-a96d-215910d425ec"
+content_hash = "sha256:3d3152a47b33f8fd0700a0747705dcacc3435f5a0134ecc19c327c552dbc859b"
+size = 38589
+mtime_ms = 1788974221858
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/79a081f6-bbe6-401e-a96d-215910d425ec/a453d520-f2a8-4ecc-85ec-4713b0607385"
+storage_version_token = "1789077644051990"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "fOsrxC2NbvMYz2XDcPCVe"
+uri = "file://screenshots/remood-spring-paris.jpg"
+type = "image"
+title = "remood-spring-paris.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "92f80e1f-d31b-41fc-ab73-d935d098e35f"
+content_hash = "sha256:1c95d33606de3ec6e55522c05a03a1520e914b44f6c806fcbfe5a74639a4d1dc"
+size = 126213
+mtime_ms = 1787764956408
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/92f80e1f-d31b-41fc-ab73-d935d098e35f/40053982-e895-4d73-814d-4eabda571652"
+storage_version_token = "1789077652463843"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "w2bW3hE853XnTJb_NbAls"
+uri = "file://screenshots/remood-storm-doha.jpg"
+type = "image"
+title = "remood-storm-doha.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "c97a87d0-a0ad-4f8c-ab6a-bcfe45905638"
+content_hash = "sha256:089827b48d2d808e05758fc4b307788bdbf71679a4dd62bf1ba4a45fea1d68aa"
+size = 118577
+mtime_ms = 1787765986800
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/c97a87d0-a0ad-4f8c-ab6a-bcfe45905638/7ccd4f53-8083-42fe-aa6e-6f5969c8219c"
+storage_version_token = "1789077653819508"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "0iofaFBLwKzi6FPfPxD48"
+uri = "file://screenshots/remood-summer-riyadh.jpg"
+type = "image"
+title = "remood-summer-riyadh.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "291a8b0a-525d-40ac-97a4-823f247962f7"
+content_hash = "sha256:61c0070e5e88efdc5a2d049ca9a89c65382d3dfe5d269fe8d63bb4bdb17b60ea"
+size = 123352
+mtime_ms = 1787764971612
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/291a8b0a-525d-40ac-97a4-823f247962f7/eef1f05b-9956-4d07-af1f-2e475c7126ec"
+storage_version_token = "1789077655162310"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "ezUCpY89js5Mo6vT2X_Nc"
+uri = "file://screenshots/remood-winter-moscow.jpg"
+type = "image"
+title = "remood-winter-moscow.jpg"
+description = "صورة من مشروع ReMood جاهزة للتنزيل والرفع داخل مجلد screenshots في GitHub."
+logical_id = "20d81641-1ca8-43ac-a996-23f0642da7f5"
+content_hash = "sha256:68cda3c9e5b83fc0918e435e5a53a6b4f1a76dafc4967b1d7196227f91ed18b6"
+size = 130484
+mtime_ms = 1787764979176
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:94a00018-6aa8-40eb-b1d5-3b3ab565eaf5/20d81641-1ca8-43ac-a996-23f0642da7f5/331b1fba-a34e-4030-b998-cf4f907e459f"
+storage_version_token = "1789077656485343"
+content_type = "image/jpeg"

@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/remood-mobile/"
+title = "ReMood Mobile"
+description = "نسخة iOS وAndroid من ReMood تقترح الكتب بحسب المزاج والطقس وميول Goodreads، مع واجهة عربية أصلية واتجاه RTL."
+version = "1.0.0"
+id = "artifacts/remood-mobile"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/remood-mobile/" ]
+localPort = 21997
+
+[services.development]
+run = "pnpm --filter @workspace/remood-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/remood-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/remood-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "21997"
+BASE_PATH = "/remood-mobile/"

@@ -1,0 +1,3 @@
+- [AI provider setup fallback](ai-provider-setup.md) — prefer managed AI access, retain a validated direct fallback, and preserve graceful no-provider behavior.
+- [Expo web preview compatibility](expo-web-preview.md) — keep optional native media modules out of shared routes until web bundling is verified.
+- [Reader age groups](adults-only-catalogue.md) — ReMood uses three age groups: children, teens, and adults 18+.
